@@ -1,0 +1,15 @@
+{
+  "name": "webpack-config",
+  "version": "0.0.1",
+  "description": "webpack config setting",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webpack",
+    "react"
+  ],
+  "author": "linder0209",
+  "license": "MIT"
+}

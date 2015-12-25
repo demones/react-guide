@@ -77,8 +77,8 @@ module.exports = {
   // 出口 让webpack把处理完成的文件放在哪里
   output: {
     path: path.resolve(__dirname, 'dist'), //打包输出目录
-    filename: '[name].bundle.js', //文件名称
-    publicPath: '/assets/' //生成文件基于上下文路径
+    filename: '[name].[hash].bundle.js', //文件名称：生成Hash名称来防止缓存
+    publicPath: '/' //生成文件基于上下文路径
   },
 
   // 模块 要用什么不同的模块来处理各种类型的文件
@@ -123,7 +123,26 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(), // 热部署替换模块
     new webpack.NoErrorsPlugin(), //
     //把入口文件里面的数组打包成verdors.js
-    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
+    new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.[hash].js'),
 
+    //创建 HtmlWebpackPlugin 的实例
+    new HtmlwebpackPlugin({
+      title: '首页',
+      template: path.resolve(appPath, 'templates/layout.html'),
+      filename: 'index.html',
+      //chunks这个参数告诉插件要引用entry里面的哪几个入口
+      chunks: ['index', 'vendors'],
+      //要把script插入到标签里
+      inject: 'body'
+    }),
+    new HtmlwebpackPlugin({
+      title: 'home页',
+      template: path.resolve(appPath, 'templates/layout.html'),
+      filename: 'home.html',
+      //chunks这个参数告诉插件要引用entry里面的哪几个入口
+      chunks: ['home', 'vendors'],
+      //要把script插入到标签里
+      inject: 'body'
+    })
   ]
 };

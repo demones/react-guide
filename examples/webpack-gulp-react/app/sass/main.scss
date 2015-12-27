@@ -1,0 +1,12 @@
+@import './core/variables';
+
+body{
+  background-color: $bg-color;
+  color: $color;
+}
+
+.banner-img{
+  background: url("../images/flower.jpg");
+  width: 650px;
+  height: 430px;
+}

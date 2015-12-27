@@ -1,14 +1,11 @@
 import path from 'path';
 import webpack from 'webpack';
-import autoprefixer from 'autoprefixer';
-import precss from 'precss';
 import HtmlwebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin  from 'extract-text-webpack-plugin';
 
-// https://github.com/glenjamin/webpack-hot-middleware
-const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true&overlay=false';
+const hotDevServer = 'webpack/hot/dev-server';
 // https://github.com/webpack/webpack-dev-server
-const webpackDevServer = 'webpack-dev-server/client?http://localhost:8080';
+const webpackDevServer = 'webpack-dev-server/client?http://localhost:9090';
 
 const appPath = path.resolve(__dirname, 'app');
 
@@ -18,28 +15,25 @@ module.exports = {
     emitError: true, // 验证失败，终止
     configFile: 'D:/gitworkspace/eslint-config/react-es6/.eslintrc'
   },
-  // sass 配置
-  sassLoader: {
-    includePaths: [path.resolve(appPath, 'sass')]
-  },
   cache: true, //是否开启缓存模式，开启缓存，实时编译时提高性能
   debug: true, //切换到debug模式
   devtool: 'eval', //开发工具，生成 source map文件，建议开发是设为eval，上线设为 source-map
 
-  // 插件 postcss 配置设置
-  postcss: () => {
-    return {
-      defaults: [autoprefixer, precss],
-      cleaner: [autoprefixer({browsers: []})]
-    };
-  },
-
   // 配置  webpack-dev-server 设置
+  // 关于热部署，看 http://webpack.github.io/docs/webpack-dev-server.html#hot-module-replacement-with-node-js-api
   devServer: {
+    contentBase: './app',
     historyApiFallback: true,
-    progress: true,
     hot: true,
-    inline: true,
+    stats: {
+      colors: true
+    },
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    },
+    quiet: false, // 设为true，不把任何信息输出到控制台
+    publicPath: '/',
     // 代理设置
     proxy: {
       '/some/path/*': {
@@ -58,10 +52,9 @@ module.exports = {
   resolve: {
     root: [appPath], // 设置要加载模块根路径，该路径必须是绝对路径
     //自动扩展文件后缀名
-    extensions: ['', '.js', '.jsx', '.json', '.scss'],
+    extensions: ['', '.js', '.jsx', '.json', '.css'],
     //模块别名定义，方便直接引用别名
     alias: {
-      sass: path.resolve(appPath, 'sass'),
       containers: path.resolve(appPath, 'scripts/containers'),
       components: path.resolve(appPath, 'scripts/components')
     }
@@ -69,8 +62,8 @@ module.exports = {
 
   // 入口文件 让webpack用哪个文件作为项目的入口
   entry: {
-    index: ['./app/scripts/containers/index.js', webpackDevServer, hotMiddlewareScript],
-    home: ['./app/scripts/containers/home.js', webpackDevServer, hotMiddlewareScript],
+    index: [webpackDevServer, hotDevServer, './app/scripts/containers/index.js'],
+    home: [webpackDevServer, hotDevServer, './app/scripts/containers/home.js'],
     //添加要打包在vendors里面的库，作为公共的js文件
     vendors: ['moment']
   },
@@ -102,12 +95,6 @@ module.exports = {
           plugins: ['transform-runtime']
         }
       },
-      // https://github.com/jtangelder/sass-loader
-      {
-        test: /\.scss$/,
-        loaders: ['style', 'css?sourceMap', 'postcss', 'sass?sourceMap'],
-        outputStyle: 'expanded'
-      },
       // https://github.com/webpack/extract-text-webpack-plugin 单独引入css文件
       {
         test: /\.css$/,
@@ -130,11 +117,11 @@ module.exports = {
     new webpack.NoErrorsPlugin(), //
     //把入口文件里面的 vendors 包含的js文件 打包成verdors.js，除了指定的verdors外，多个入口的公共文件也会被打包到 vendors中
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.[hash].js'),
+
     new ExtractTextPlugin('styles/[name].css?[hash]-[chunkhash]-[contenthash]-[name]', {
       disable: false,
       allChunks: true
     }),
-
     //创建 HtmlWebpackPlugin 的实例
     new HtmlwebpackPlugin({
       title: '首页',

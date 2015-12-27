@@ -1,14 +1,13 @@
-import path from 'path';
-import webpack from 'webpack';
-import autoprefixer from 'autoprefixer';
-import precss from 'precss';
-import HtmlwebpackPlugin from 'html-webpack-plugin';
-import ExtractTextPlugin  from 'extract-text-webpack-plugin';
 
-// https://github.com/glenjamin/webpack-hot-middleware
-const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true&overlay=false';
+const path = require('path');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const precss = require('precss');
+const HtmlwebpackPlugin = require('html-webpack-plugin');
+
+const hotDevServer = 'webpack/hot/dev-server';
 // https://github.com/webpack/webpack-dev-server
-const webpackDevServer = 'webpack-dev-server/client?http://localhost:8080';
+const webpackDevServer = 'webpack-dev-server/client?http://localhost:9090';
 
 const appPath = path.resolve(__dirname, 'app');
 
@@ -36,10 +35,18 @@ module.exports = {
 
   // 配置  webpack-dev-server 设置
   devServer: {
+    contentBase: './app/',
     historyApiFallback: true,
-    progress: true,
     hot: true,
-    inline: true,
+    stats: {
+      colors: true
+    },
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    },
+    quiet: false, // 设为true，不把任何信息输出到控制台
+    publicPath: '/',
     // 代理设置
     proxy: {
       '/some/path/*': {
@@ -69,8 +76,8 @@ module.exports = {
 
   // 入口文件 让webpack用哪个文件作为项目的入口
   entry: {
-    index: ['./app/scripts/containers/index.js', webpackDevServer, hotMiddlewareScript],
-    home: ['./app/scripts/containers/home.js', webpackDevServer, hotMiddlewareScript],
+    index: ['./app/scripts/containers/index.js', webpackDevServer, hotDevServer],
+    home: ['./app/scripts/containers/home.js', webpackDevServer, hotDevServer],
     //添加要打包在vendors里面的库，作为公共的js文件
     vendors: ['moment']
   },
@@ -108,11 +115,6 @@ module.exports = {
         loaders: ['style', 'css?sourceMap', 'postcss', 'sass?sourceMap'],
         outputStyle: 'expanded'
       },
-      // https://github.com/webpack/extract-text-webpack-plugin 单独引入css文件
-      {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
-      },
       // https://github.com/webpack/url-loader
       {
         test: /\.(png|jpg|gif|woff|woff2)$/,
@@ -128,12 +130,8 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(), //
     new webpack.HotModuleReplacementPlugin(), // 热部署替换模块
     new webpack.NoErrorsPlugin(), //
-    //把入口文件里面的 vendors 包含的js文件 打包成verdors.js，除了指定的verdors外，多个入口的公共文件也会被打包到 vendors中
+    //把入口文件里面的数组打包成verdors.js
     new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.[hash].js'),
-    new ExtractTextPlugin('styles/[name].css?[hash]-[chunkhash]-[contenthash]-[name]', {
-      disable: false,
-      allChunks: true
-    }),
 
     //创建 HtmlWebpackPlugin 的实例
     new HtmlwebpackPlugin({

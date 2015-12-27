@@ -1,0 +1,10 @@
+body {
+  background-color: #eee;
+  color: #333;
+}
+
+.banner-img {
+  background: url("../images/flower.jpg");
+  width: 650px;
+  height: 430px;
+}

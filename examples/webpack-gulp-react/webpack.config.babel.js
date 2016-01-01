@@ -17,7 +17,7 @@ module.exports = {
   },
   cache: true, //是否开启缓存模式，开启缓存，实时编译时提高性能
   debug: true, //切换到debug模式
-  devtool: 'eval', //开发工具，生成 source map文件，建议开发是设为eval，上线设为 source-map
+  devtool: 'source-map', //生成 source map文件
 
   // 配置  webpack-dev-server 设置
   // 关于热部署，看 http://webpack.github.io/docs/webpack-dev-server.html#hot-module-replacement-with-node-js-api

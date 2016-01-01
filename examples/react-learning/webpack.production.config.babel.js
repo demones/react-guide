@@ -6,7 +6,6 @@ import ExtractTextPlugin  from 'extract-text-webpack-plugin';
 const appPath = path.resolve(__dirname, 'app');
 
 module.exports = {
-  devtool: 'source-map', //生成 source map文件
   resolve: {
     root: [appPath], // 设置要加载模块根路径，该路径必须是绝对路径
     //自动扩展文件后缀名

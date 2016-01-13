@@ -17,7 +17,7 @@ let webpackConfig = {
   },
   cache: true, //是否开启缓存模式，开启缓存，实时编译时提高性能
   debug: true, //切换到debug模式
-  devtool: 'eval', //开发工具，生成 source map文件，建议开发是设为eval，上线设为 source-map
+  devtool: 'eval-source-map', //生成 source map文件，上线设为 source-map
 
   // 配置  webpack-dev-server 设置
   // 关于热部署，看 http://webpack.github.io/docs/webpack-dev-server.html#hot-module-replacement-with-node-js-api
@@ -50,9 +50,6 @@ let webpackConfig = {
   // 入口文件 让webpack用哪个文件作为项目的入口
   entry: {
     index: [webpackDevServer, hotDevServer, './app/scripts/index.js'],
-    jsxAndJsTransform: [webpackDevServer, hotDevServer, './app/scripts/containers/jsxAndJsTransform.js'],
-    htmlEscaped: [webpackDevServer, hotDevServer, './app/scripts/containers/htmlEscaped.js'],
-    customAttribute: [webpackDevServer, hotDevServer, './app/scripts/containers/customAttribute.js'],
     //添加要打包在vendors里面的库，作为公共的js文件
     vendors: []
   },
@@ -121,15 +118,6 @@ const entry = webpackConfig.entry;
 const htmlwebpackPluginConfig = {
   index: {
     title: '例子列表'
-  },
-  jsxAndJsTransform: {
-    title: 'jsx 与 js 转换'
-  },
-  htmlEscaped: {
-    title: 'html 转义'
-  },
-  customAttribute: {
-    title: '自定义 HTML 属性'
   }
 };
 

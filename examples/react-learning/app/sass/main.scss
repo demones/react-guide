@@ -3,4 +3,10 @@
 body{
   background-color: $bg-color;
   color: $color;
+  padding: 10px;
+  line-height: 1.2;
+}
+
+pre{
+  font-size: 14px;
 }

@@ -38,6 +38,33 @@ gulp.task('extras', () => {
   }).pipe(gulp.dest('dist'));
 });
 
+//对于没有写到样式中的图片，执行该任务来优化图片
+gulp.task('images', () => {
+  return gulp.src(['app/img/**'], {dot: true})
+    .pipe($.if($.if.isFile,
+      $.cache(
+        $.imagemin({
+          progressive: true,
+          interlaced: true,
+          // don't remove IDs from SVGs, they are often used
+          // as hooks for embedding and styling
+          svgoPlugins: [{cleanupIDs: false}]
+        }))
+        .on('error', function (err) {
+          console.log(err);
+          this.end();
+        })))
+    .pipe(gulp.dest('dist/images'));
+});
+
+//替换任务
+gulp.task('replace', () => {
+  gulp.src(['dist/vendors*.js'])
+    .pipe($.replace('replace1', ''))
+    .pipe($.replace(/(replace1)/, '$1linder'))
+    .pipe(gulp.dest('dist'));
+});
+
 //清理临时和打包目录
 gulp.task('clean', del.bind(null, ['dist']));
 
@@ -73,6 +100,8 @@ gulp.task('webpack', () => {
     gutil.log('[webpack:build]', stats.toString({
       colors: true
     }));
+
+    gulp.run(['images', 'replace']);
   });
 });
 

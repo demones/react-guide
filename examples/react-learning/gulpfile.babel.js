@@ -53,7 +53,7 @@ gulp.task('server', ['sass'], () => {
       throw new gutil.PluginError('webpack-dev-server', err);
     }
     // Server listening
-    gutil.log('[webpack-dev-server]', `http://${ip}:${port}/`);
+    gutil.log('[webpack-dev-server]', `http://${ip}:${port}/index.html`);
 
     // keep the server alive or continue?
     opn(`http://${ip}:${port}/`, {app: 'chrome'});

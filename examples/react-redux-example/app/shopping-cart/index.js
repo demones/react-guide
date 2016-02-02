@@ -1,0 +1,26 @@
+import React from 'react';
+import { render } from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
+import reducer from './reducers';
+import { getAllProducts } from './actions';
+import App from './containers/App';
+
+const middleware = process.env.NODE_ENV === 'production' ?
+  [ thunk ] :
+  [ thunk, logger() ];
+
+const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
+const store = createStoreWithMiddleware(reducer);
+
+// 加载后就显示 all product
+store.dispatch(getAllProducts());
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('layout')
+);

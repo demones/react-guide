@@ -18,7 +18,7 @@ let webpackConfig = {
   },
   cache: true, //是否开启缓存模式，开启缓存，实时编译时提高性能
   debug: true, //切换到debug模式
-  devtool: 'eval-source-map', //生成 source map文件，上线设为 source-map
+  devtool: 'cheap-module-eval-source-map', //生成 source map文件，上线设为 source-map
 
   // 配置  webpack-dev-server 设置
   // 关于热部署，看 http://webpack.github.io/docs/webpack-dev-server.html#hot-module-replacement-with-node-js-api
@@ -42,15 +42,18 @@ let webpackConfig = {
     //自动扩展文件后缀名
     extensions: ['', '.js', '.jsx', '.json', '.css'],
     //模块别名定义，方便直接引用别名
-    alias: {
-      containers: path.resolve(appPath, 'scripts/containers'),
-      components: path.resolve(appPath, 'scripts/components')
-    }
+    alias: {}
   },
 
   // 入口文件 让webpack用哪个文件作为项目的入口
   entry: {
-    index: [webpackDevServer, hotDevServer, './app/scripts/index.js'],
+    index: [webpackDevServer, hotDevServer, './app/index.js'],
+    counter: [webpackDevServer, hotDevServer, './app/counter/index.js'],
+    todomvc: [webpackDevServer, hotDevServer, './app/todomvc/index.js'],
+    todoswithundo: [webpackDevServer, hotDevServer, './app/todos-with-undo/index.js'],
+    async: [webpackDevServer, hotDevServer, './app/async/index.js'],
+    realworld: [webpackDevServer, hotDevServer, './app/real-world/index.js'],
+    shoppingcart: [webpackDevServer, hotDevServer, './app/shopping-cart/index.js'],
     //添加要打包在vendors里面的库，作为公共的js文件
     vendors: []
   },
@@ -76,11 +79,12 @@ let webpackConfig = {
         test: /\.jsx?$/,
         loader: 'babel', // 'babel-loader' is also a legal name to reference
         exclude: /(node_modules|bower_components)/,
-        cacheDirectory: true, // 开启缓存
-        query: {
-          presets: ['react', 'es2015'],
+        cacheDirectory: true // 开启缓存
+        // 以下设置可不写，在 .babelrc 中设置即可
+        /*query: {
+          presets: ['stage-0', 'es2015', 'react'],
           plugins: ['transform-runtime']
-        }
+        }*/
       },
       // https://github.com/webpack/extract-text-webpack-plugin 单独引入css文件
       {
@@ -89,11 +93,17 @@ let webpackConfig = {
       },
       // https://github.com/webpack/url-loader
       {
-        test: /\.(png|jpg|gif|woff|woff2)$/,
+        test: /\.(png|jpg|gif|woff|woff2|svg)$/,
         loader: 'url?limit=10000', // 10kb
         query: {
           mimetype: 'image/png'
         }
+      },
+      // https://www.npmjs.com/package/json-loader 把 json 字符串转换成对象
+      {
+        test: /\.json$/,
+        loaders: ['json'],
+        exclude: /node_modules/
       }
     ]
   },
@@ -118,7 +128,25 @@ const entry = webpackConfig.entry;
 // 为 HtmlwebpackPlugin 设置配置项，与 entry 键对应，根据需要设置其参数值
 const htmlwebpackPluginConfig = {
   index: {
-    title: '例子列表'
+    title: '官方例子列表'
+  },
+  counter: {
+    title: '官方例子 Counter'
+  },
+  todomvc: {
+    title: '官方例子 Redux TodoMVC example'
+  },
+  todoswithundo: {
+    title: '官方例子 Redux todos with undo example'
+  },
+  async: {
+    title: '官方例子 Redux async example'
+  },
+  realworld: {
+    title: '官方例子 Redux real-world example'
+  },
+  shoppingcart: {
+    title: '官方例子 Redux shopping cart example'
   }
 };
 

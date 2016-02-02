@@ -56,7 +56,7 @@ gulp.task('server', ['sass'], () => {
     gutil.log('[webpack-dev-server]', `http://${ip}:${port}/index.html`);
 
     // keep the server alive or continue?
-    opn(`http://${ip}:${port}/`, {app: 'google chrome'});
+    opn(`http://${ip}:${port}/`, {app: 'chrome'});
   });
 
   gulp.watch('app/sass/**/*.scss', ['sass']);

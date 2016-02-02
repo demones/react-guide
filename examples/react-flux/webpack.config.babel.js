@@ -10,12 +10,6 @@ const webpackDevServer = 'webpack-dev-server/client?http://localhost:9090';
 const appPath = path.resolve(__dirname, 'app');
 
 let webpackConfig = {
-  // eslint 配置
-  eslint: {
-    emitError: true, // 验证失败，终止
-    configFile: '/Users/wangyanjun/gitworkspace/eslint-config/react-es6/.eslintrc' // for mac
-    //configFile: 'D:/gitworkspace/eslint-config/react-es6/.eslintrc'
-  },
   cache: true, //是否开启缓存模式，开启缓存，实时编译时提高性能
   debug: true, //切换到debug模式
   devtool: 'eval-source-map', //生成 source map文件，上线设为 source-map
@@ -43,14 +37,13 @@ let webpackConfig = {
     extensions: ['', '.js', '.jsx', '.json', '.css'],
     //模块别名定义，方便直接引用别名
     alias: {
-      containers: path.resolve(appPath, 'scripts/containers'),
       components: path.resolve(appPath, 'scripts/components')
     }
   },
 
   // 入口文件 让webpack用哪个文件作为项目的入口
   entry: {
-    index: [webpackDevServer, hotDevServer, './app/scripts/index.js'],
+    index: [webpackDevServer, hotDevServer, './app/scripts/app.js'],
     //添加要打包在vendors里面的库，作为公共的js文件
     vendors: []
   },
@@ -64,12 +57,6 @@ let webpackConfig = {
 
   // 模块 要用什么不同的模块来处理各种类型的文件
   module: {
-    // https://github.com/MoOx/eslint-loader
-    preLoaders: [{
-      test: /\.jsx?$/,
-      exclude: /(node_modules|bower_components)/,
-      loader: 'eslint'
-    }],
     loaders: [
       // https://github.com/babel/babel-loader
       {
@@ -118,7 +105,7 @@ const entry = webpackConfig.entry;
 // 为 HtmlwebpackPlugin 设置配置项，与 entry 键对应，根据需要设置其参数值
 const htmlwebpackPluginConfig = {
   index: {
-    title: '例子列表'
+    title: 'flux mvc todo list'
   }
 };
 

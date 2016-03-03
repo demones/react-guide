@@ -56,7 +56,7 @@ let webpackConfig = {
     shoppingcart: [webpackDevServer, hotDevServer, './app/shopping-cart/index.js'],
     //curdexample: [webpackDevServer, hotDevServer, './app/curd-example/index.js'],
     curd: [webpackDevServer, hotDevServer, './app/curd-demo/index.js'],
-    curdfinal: [webpackDevServer, hotDevServer, './app/curd-demo/index.js'],
+    curdfinal: [webpackDevServer, hotDevServer, './app/curd-demo-final/index.js'],
     //添加要打包在vendors里面的库，作为公共的js文件
     vendors: []
   },

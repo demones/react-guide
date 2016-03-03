@@ -19,7 +19,7 @@ function fetchReceive(code, json) {
 export function fetchIntro(code) {
   return dispatch => {
     dispatch(fetchRequest(code));
-    return fetch(`./curd-demo/json/${code}.json`)
+    return fetch(`./curd-demo-final/json/${code}.json`)
       .then(response => response.json())
       .then(json => dispatch(fetchReceive(code, json)));
   };

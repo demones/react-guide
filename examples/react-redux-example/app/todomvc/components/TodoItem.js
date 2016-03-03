@@ -23,8 +23,12 @@ class TodoItem extends Component {
     this.setState({editing: false});
   }
 
+  deleteTodo (id) {
+    this.props.deleteTodo(id);
+  }
+
   render() {
-    const { todo, completeTodo, deleteTodo } = this.props;
+    const { todo, completeTodo} = this.props;
 
     let element;
     if (this.state.editing) {
@@ -44,7 +48,7 @@ class TodoItem extends Component {
             {todo.text}
           </label>
           <button className="destroy"
-                  onClick={() => deleteTodo(todo.id)}/>
+                  onClick={this.deleteTodo.bind(this, todo.id)}/>
         </div>
       );
     }

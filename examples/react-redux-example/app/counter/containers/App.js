@@ -24,7 +24,7 @@ function mapDispatchToProps(dispatch) {
 /**
  * 包装 component ，注入 dispatch 和 state 到其默认的
  * connect(mapStateToProps, mapDispatchToProps)(Counter) 中；
- * 利用 connect 重新包装组件 Counter，内部实现比较复杂，主要是处理了 state props store 和 dispatch
+ * 利用 Connect 重新包装组件 Counter，内部实现比较复杂，主要是处理了 state props store 和 dispatch
  *
  * 内部首先创建 Connect 组件，该组件中处理了 mapStateToProps, mapDispatchToProps 等，把以下几个主要方法罗列以下
  * 1、computeStateProps(store, props) 会调用传入的 mapStateToProps 拿到返回的 state 值
@@ -33,7 +33,7 @@ function mapDispatchToProps(dispatch) {
  *
  * 3、内部用到的 store 会返回 Object 对象
      dispatch: (action) 调用当前的 reducer 把 当前的 state 和 aticon 转换为新的 state
-     getState: getState() 返回当前的状态
+     getState: getState() 返回当前的 state，redux 中只维护了一套 state
      replaceReducer: replaceReducer(nextReducer) 用新的 reducer 替换当前的 reducer，并触发 dispatch
      subscribe: subscribe(listener) 添加新的订阅，即添加监听
 

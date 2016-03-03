@@ -14,6 +14,8 @@ class App extends Component {
   // ajax 请求应该放到这里实现
   componentDidMount() {
     // 这些 props 属性是通过 mapStateToProps 来设置的
+    /*eslint-disable*/
+    alert(1);
     const { dispatch, selectedReddit } = this.props;
     dispatch(fetchPostsIfNeeded(selectedReddit));
   }

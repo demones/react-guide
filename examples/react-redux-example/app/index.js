@@ -24,7 +24,18 @@ class Index extends Component {
     }, {
       title: '官方例子 Redux shopping cart example',
       url: './shoppingcart.html'
-    }];
+    },
+      /*{
+       title: '一个简单的增删改查例子',
+       url: './curdexample.html'
+       }, */
+      {
+        title: '一个简单的增删改查例子',
+        url: './curdfinal.html'
+      }, {
+        title: '一个简单的增删改查例子（演示）',
+        url: './curd.html'
+      }];
 
     return (
       <ol style={{margin: '30px auto', width: '80%'}}>

@@ -1,0 +1,5 @@
+export const SELECT_BEIJING = 'SELECT_BEIJING';
+export const SELECT_HEBEI = 'SELECT_HEBEI';
+
+export const FETCH_RECEIVE = 'FETCH_RECEIVE';
+export const FETCH_REQUEST = 'FETCH_REQUEST';

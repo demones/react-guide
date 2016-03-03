@@ -37,6 +37,7 @@ class MainSection extends Component {
                onChange={actions.completeAll}/>
       );
     }
+    return null;
   }
 
   renderFooter(completedCount) {

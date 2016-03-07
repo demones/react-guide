@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {Router, Route, IndexRoute} from 'react-router';
-import {createHashHistory} from 'history';
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+//import {createHashHistory} from 'history';
 
 import HopeFuture from 'components/HopeFuture';
 import Index from 'components/Index';
@@ -15,16 +15,17 @@ import Piecemeal from 'components/Piecemeal';
 import Combination from 'components/Combination';
 import Communication from 'components/Communication';
 import Form from 'components/Form';
+import Animation from 'components/Animation';
 
 import 'styles/main.css';
 
-const history = createHashHistory({
+/*const history = createHashHistory({
   queryKey: false
-});
+});*/
 
 render((
   <div>
-    <Router history={history}>
+    <Router history={browserHistory}>
       <Route path="/" component={HopeFuture}>
         <IndexRoute component={Index}/>
         <Route path="/jsx" component={JsxAndJsTransformParent}/>
@@ -37,6 +38,7 @@ render((
         <Route path="/combination" component={Combination}/>
         <Route path="/communication" component={Communication}/>
         <Route path="/form" component={Form}/>
+        <Route path="/animation" component={Animation}/>
       </Route>
     </Router>
   </div>

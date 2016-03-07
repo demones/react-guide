@@ -16,6 +16,7 @@ class List extends Component {
           <li><Link to="/combination" target="_blank">组件组合</Link></li>
           <li><Link to="/communication" target="_blank">组件间通信</Link></li>
           <li><Link to="/form" target="_blank">表单操作</Link></li>
+          <li><Link to="/animation" target="_blank">react 动画</Link></li>
 
           <li><Link to="/piecemeal" target="_blank">零碎知识点</Link></li>
         </ul>

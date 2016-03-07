@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 class HtmlEscaped extends Component {
   render() {
     const copy = '&copy;';
+    /*eslint-disable quotes*/
     const escaped1 = `<span>{['cc ', <span>&copy;</span>, ' 2015']}</span>`;
     const escaped2 = `<span dangerouslySetInnerHTML={{__html: 'cc &copy; 2015'}} />`;
     return (

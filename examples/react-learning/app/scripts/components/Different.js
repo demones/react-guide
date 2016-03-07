@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 class Different extends Component {
+  /*eslint-disable quotes*/
   render() {
     return (
       <div>

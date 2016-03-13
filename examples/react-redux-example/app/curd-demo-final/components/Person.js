@@ -6,11 +6,6 @@ import PersonTabs from './PersonTabs';
 import curdActions from '../actions';
 
 class Person extends Component {
-  constructor(props, context) {
-    super(props, context);
-    console.info(context);
-  }
-
   componentDidMount() {
     const {dispatch} = this.props;
     dispatch(curdActions.loadPerson());

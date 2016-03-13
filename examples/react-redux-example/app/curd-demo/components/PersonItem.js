@@ -1,12 +1,16 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 class PersonItem extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      editing: false,
+      person: this.props.person
+    };
   }
 
   render() {
-    const {person} = this.props;
+    const {person} = this.state;
     return (
       <tr>
         <th>{person.id}</th>
@@ -22,6 +26,10 @@ class PersonItem extends Component {
       </tr>
     );
   }
+}
+
+PersonItem.propTypes = {
+  person: PropTypes.object
 }
 
 export default PersonItem;

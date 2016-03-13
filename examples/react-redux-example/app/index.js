@@ -25,12 +25,12 @@ class Index extends Component {
       title: '官方例子 Redux shopping cart example',
       url: './shoppingcart.html'
     },
-      /*{
-       title: '一个简单的增删改查例子',
-       url: './curdexample.html'
-       }, */
       {
-        title: '一个简单的增删改查例子',
+        title: '一个简单的增删改查例子（最初版本）',
+        url: './curdexample.html'
+      },
+      {
+        title: '一个简单的增删改查例子（中间版本）',
         url: './curdfinal.html'
       }, {
         title: '一个简单的增删改查例子（演示）',

@@ -1,6 +1,6 @@
 import * as ActionTypes from '../constants/ActionTypes';
 
-
+/*eslint-disable indent*/
 export default function personsReducer(state = [], action) {
   switch (action.type) {
     case ActionTypes.ADD_PERSON:

@@ -1,16 +1,12 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import PersonForm from './PersonForm';
 import PersonExplain from './PersonExplain';
 import PersonList from './PersonList';
 
 class Person extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const {actions, persons, dispatch} = this.props;
-    console.info(this.props);
     const listProps = {
       actions,
       persons,
@@ -47,5 +43,11 @@ class Person extends Component {
     );
   }
 }
+
+Person.propTypes = {
+  persons: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+  dispatch: PropTypes.func
+};
 
 export default Person;

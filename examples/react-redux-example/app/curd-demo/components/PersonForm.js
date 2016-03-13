@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 class PersonForm extends Component {
   constructor(props) {
@@ -22,7 +22,8 @@ class PersonForm extends Component {
       lastName: ''
     });
   }
-  handleChange(field,event){
+
+  handleChange(field, event) {
     const val = event.target.value;
     this.setState({
       [field]: val
@@ -30,14 +31,13 @@ class PersonForm extends Component {
   }
 
   render() {
-    console.info(this.props);
     const {firstName, lastName} = this.state;
     return (
       <form className="form-inline">
         <div className="form-group">
           <label>First Name</label>
           <input type="text" className="form-control" placeholder="First Name"
-          value={firstName} onChange={this.handleChange.bind(this,'firstName')}/>
+                 value={firstName} onChange={this.handleChange.bind(this, 'firstName')}/>
         </div>
         <div className="form-group">
           <label>Last Name</label>
@@ -48,6 +48,10 @@ class PersonForm extends Component {
       </form>
     );
   }
+}
+
+PersonForm.propTypes = {
+  addPerson: PropTypes.func
 }
 
 export default PersonForm;

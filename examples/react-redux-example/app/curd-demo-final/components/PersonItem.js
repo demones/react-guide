@@ -25,8 +25,7 @@ class PersonItem extends Component {
   }
 
   handleSave() {
-    const editPerson = this.props.editPerson;
-    editPerson(this.state.person);
+    this.props.editPerson(this.state.person);
     this.setState({
       editing: false
     }, () => {
@@ -52,7 +51,7 @@ class PersonItem extends Component {
   }
 
   handleChange(field, event) {
-    const person = Object.assign({}, this.state.person);
+    const person = this.state.person;
     const val = event.target.value;
     person[field] = val;
     this.setState({

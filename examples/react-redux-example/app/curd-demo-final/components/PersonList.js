@@ -2,10 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import PersonItem from './PersonItem';
 
 class PersonList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {persons, actions} = this.props;
     const {editPerson, deletePerson} = actions;
@@ -23,9 +19,9 @@ class PersonList extends Component {
         </thead>
         <tbody>
         {
-          persons.map((person, index) => {
+          persons.map((person) => {
             return (
-              <PersonItem key={index} person={person} {...operate}/>
+              <PersonItem key={person.id} {...operate} person={person}/>
             );
           })
         }

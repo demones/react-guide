@@ -24,13 +24,13 @@ export function listPerson(persons) {
 
 export function loadPerson(persons) {
   return (dispatch) => {
-    setTimeout(()=>{
+    setTimeout(() => {
       const persons = [{
         id: 1,
         firstName: 'zhang',
         lastName: 'san'
       }];
       dispatch(listPerson(persons));
-    },300);
+    }, 300);
   }
 }

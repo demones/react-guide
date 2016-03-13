@@ -35,8 +35,12 @@ export function loadPerson() {
         id: 1,
         firstName: '张',
         lastName: '三'
+      }, {
+        id: 2,
+        firstName: '李',
+        lastName: '四'
       }];
       dispatch(listPerson(persons));
     }, 300);
-  }
+  };
 }

@@ -54,7 +54,7 @@ let webpackConfig = {
     async: [webpackDevServer, hotDevServer, './app/async/index.js'],
     realworld: [webpackDevServer, hotDevServer, './app/real-world/index.js'],
     shoppingcart: [webpackDevServer, hotDevServer, './app/shopping-cart/index.js'],
-    //curdexample: [webpackDevServer, hotDevServer, './app/curd-example/index.js'],
+    curdexample: [webpackDevServer, hotDevServer, './app/curd-example/index.js'],
     curd: [webpackDevServer, hotDevServer, './app/curd-demo/index.js'],
     curdfinal: [webpackDevServer, hotDevServer, './app/curd-demo-final/index.js'],
     //添加要打包在vendors里面的库，作为公共的js文件
@@ -151,11 +151,11 @@ const htmlwebpackPluginConfig = {
   shoppingcart: {
     title: '官方例子 Redux shopping cart example'
   },
-  /*curdexample: {
-    title: '一个简单的增删改查例子'
-  },*/
+  curdexample: {
+    title: '一个简单的增删改查例子（最初版本）'
+  },
   curdfinal: {
-    title: '一个简单的增删改查例子'
+    title: '一个简单的增删改查例子（中间版本）'
   },
   curd: {
     title: '一个简单的增删改查例子（演示）'

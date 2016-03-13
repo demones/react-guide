@@ -13,7 +13,7 @@ function fetchReceive(code, json) {
     type: TabActionType.FETCH_RECEIVE,
     code,
     intro: json.success ? json.data.intro : ''
-  }
+  };
 }
 
 export function fetchIntro(code) {

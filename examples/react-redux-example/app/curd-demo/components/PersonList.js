@@ -1,12 +1,8 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import PersonItem from './PersonItem';
 import * as Actions from '../actions';
 
 class PersonList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const {dispatch} = this.props;
     dispatch(Actions.loadPerson());
@@ -27,9 +23,9 @@ class PersonList extends Component {
         </thead>
         <tbody>
         {
-          persons.map((person, index) => {
+          persons.map((person) => {
             return (
-              <PersonItem key={index} person={person}/>
+              <PersonItem key={person.id}  person={person}/>
             );
           })
         }
@@ -37,6 +33,11 @@ class PersonList extends Component {
       </table>
     );
   }
+}
+
+PersonList.propTypes = {
+  dispatch: PropTypes.func,
+  persons: PropTypes.array
 }
 
 export default PersonList;

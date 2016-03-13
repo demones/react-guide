@@ -3,9 +3,6 @@ import classnames from 'classnames';
 import curdActions from '../actions';
 
 class PersonTabs extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     const {dispatch, tabs} = this.props;

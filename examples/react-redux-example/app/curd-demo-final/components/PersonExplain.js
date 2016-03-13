@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 
 class PersonExplain extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (

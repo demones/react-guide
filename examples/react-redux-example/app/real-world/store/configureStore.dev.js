@@ -1,28 +1,25 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { reduxReactRouter } from 'redux-router';
-import DevTools from '../containers/DevTools';
-import createHistory from 'history/lib/createHashHistory';
-import routes from '../routes';
 import thunk from 'redux-thunk';
-import api from '../middleware/api';
 import createLogger from 'redux-logger';
+import api from '../middleware/api';
 import rootReducer from '../reducers';
-
-const finalCreateStore = compose(
-  applyMiddleware(thunk, api),
-  reduxReactRouter({ routes, createHistory }),
-  applyMiddleware(createLogger()),
-  DevTools.instrument()
-)(createStore);
+import DevTools from '../containers/DevTools';
 
 export default function configureStore(initialState) {
-  const store = finalCreateStore(rootReducer, initialState);
+  const store = createStore(
+    rootReducer,
+    initialState,
+    compose(
+      applyMiddleware(thunk, api, createLogger()),
+      DevTools.instrument()
+    )
+  )
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {
       /*eslint-disable global-require*/
-      const nextRootReducer = require('../reducers');
+      const nextRootReducer = require('../reducers').default;
       store.replaceReducer(nextRootReducer);
     });
   }

@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { loadUser, loadStarred } from '../actions';
-import User from '../components/User';
-import Repo from '../components/Repo';
-import List from '../components/List';
-import lodashArray from 'lodash/array';
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { loadUser, loadStarred } from '../actions'
+import User from '../components/User'
+import Repo from '../components/Repo'
+import List from '../components/List'
+import zip from 'lodash/zip'
 
 function loadData(props) {
   const { login } = props;
@@ -53,7 +53,7 @@ class UserPage extends Component {
         <User user={user} />
         <hr />
         <List renderItem={this.renderRepo}
-              items={lodashArray.zip(starredRepos, starredRepoOwners)}
+              items={zip(starredRepos, starredRepoOwners)}
               onLoadMoreClick={this.handleLoadMoreClick}
               loadingLabel={`Loading ${login}’s starred...`}
               {...starredPagination} />
@@ -72,8 +72,8 @@ UserPage.propTypes = {
   loadStarred: PropTypes.func.isRequired
 };
 
-function mapStateToProps(state) {
-  const { login } = state.router.params;
+function mapStateToProps(state, ownProps) {
+  const { login } = ownProps.params
   const {
     pagination: { starredByUser },
     entities: { users, repos }

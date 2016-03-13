@@ -1,13 +1,13 @@
-import * as ActionTypes from '../actions';
-import lodashObject from 'lodash/object';
-import paginate from './paginate';
-import { routerStateReducer as router } from 'redux-router';
-import { combineReducers } from 'redux';
+import * as ActionTypes from '../actions'
+import merge from 'lodash/merge'
+import paginate from './paginate'
+import { routerReducer as routing } from 'react-router-redux'
+import { combineReducers } from 'redux'
 
 // Updates an entity cache in response to any action with response.entities.
 function entities(state = { users: {}, repos: {} }, action) {
   if (action.response && action.response.entities) {
-    return lodashObject.merge({}, state, action.response.entities);
+    return merge({}, state, action.response.entities)
   }
 
   return state;
@@ -50,7 +50,7 @@ const rootReducer = combineReducers({
   entities,
   pagination,
   errorMessage,
-  router
-});
+  routing
+})
 
 export default rootReducer;

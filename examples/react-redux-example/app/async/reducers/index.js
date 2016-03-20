@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import assign from 'lodash/assign';
 import {
   SELECT_REDDIT, INVALIDATE_REDDIT,
   REQUEST_POSTS, RECEIVE_POSTS
@@ -21,16 +22,16 @@ function posts(state = {
 }, action) {
   switch (action.type) {
     case INVALIDATE_REDDIT:
-      return Object.assign({}, state, {
+      return assign({}, state, {
         didInvalidate: true
       });
     case REQUEST_POSTS:
-      return Object.assign({}, state, {
+      return assign({}, state, {
         isFetching: true,
         didInvalidate: false
       });
     case RECEIVE_POSTS:
-      return Object.assign({}, state, {
+      return assign({}, state, {
         isFetching: false,
         didInvalidate: false,
         items: action.posts,
@@ -51,7 +52,7 @@ function postsByReddit(state = { }, action) {
         ... state,
         [action.reddit]: posts(state[action.reddit], action)
       };
-      /*return Object.assign({}, state, {
+      /*return assign({}, state, {
         [action.reddit]: posts(state[action.reddit], action)
       });*/
     default:

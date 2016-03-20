@@ -1,3 +1,4 @@
+import assign from 'lodash/assign';
 import React, {Component, PropTypes} from 'react';
 
 class PersonItem extends Component {
@@ -8,7 +9,7 @@ class PersonItem extends Component {
       person: this.props.person
     };
 
-    this.personDefault = Object.assign({}, this.props.person);
+    this.personDefault = assign({}, this.props.person);
   }
 
   handleEdit() {

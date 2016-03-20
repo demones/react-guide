@@ -74,6 +74,7 @@ UserPage.propTypes = {
 
 function mapStateToProps(state, ownProps) {
   const { login } = ownProps.params
+  // 注意这种写法，相当于给 starredByUser users 和 repos 赋值
   const {
     pagination: { starredByUser },
     entities: { users, repos }

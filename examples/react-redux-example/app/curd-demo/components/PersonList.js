@@ -1,15 +1,17 @@
 import React, {Component, PropTypes} from 'react';
 import PersonItem from './PersonItem';
-import * as Actions from '../actions';
+import curdActions from '../actions';
 
 class PersonList extends Component {
   componentDidMount() {
     const {dispatch} = this.props;
-    dispatch(Actions.loadPerson());
+    dispatch(curdActions.loadPerson());
   }
 
   render() {
-    const {persons} = this.props;
+    const {persons, actions} = this.props;
+    const {editPerson, deletePerson} = actions;
+    const operate = {editPerson, deletePerson};
     return (
       <table className="table">
         <thead className="thead-inverse">
@@ -25,7 +27,7 @@ class PersonList extends Component {
         {
           persons.map((person) => {
             return (
-              <PersonItem key={person.id}  person={person}/>
+              <PersonItem key={person.id} {...operate} person={person}/>
             );
           })
         }
@@ -37,7 +39,8 @@ class PersonList extends Component {
 
 PersonList.propTypes = {
   dispatch: PropTypes.func,
-  persons: PropTypes.array
+  persons: PropTypes.array.isRequired,
+  actions: PropTypes.object
 }
 
 export default PersonList;

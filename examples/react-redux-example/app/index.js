@@ -35,6 +35,9 @@ class Index extends Component {
       }, {
         title: '一个简单的增删改查例子（演示）',
         url: './curd.html'
+      }, {
+        title: '多彩的世界（开发环境）',
+        url: './colorfulworld.html'
       }];
 
     return (

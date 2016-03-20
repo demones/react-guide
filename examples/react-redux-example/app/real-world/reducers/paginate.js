@@ -4,7 +4,7 @@ import union from 'lodash/union'
 // Creates a reducer managing pagination, given the action types to handle,
 // and a function telling how to extract the key from an action.
 /*eslint-disable indent*/
-export default function paginate({ types, mapActionToKey }) {
+export default function paginate({types, mapActionToKey}) {
   if (!Array.isArray(types) || types.length !== 3) {
     throw new Error('Expected types to be an array of three elements.');
   }
@@ -49,6 +49,7 @@ export default function paginate({ types, mapActionToKey }) {
       case requestType:
       case successType:
       case failureType:
+      {
         const key = mapActionToKey(action);
         if (typeof key !== 'string') {
           throw new Error('Expected key to be a string.');
@@ -56,6 +57,7 @@ export default function paginate({ types, mapActionToKey }) {
         return merge({}, state, {
           [key]: updatePagination(state[key], action)
         });
+      }
       default:
         return state;
     }

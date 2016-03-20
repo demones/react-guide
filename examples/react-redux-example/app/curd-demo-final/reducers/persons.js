@@ -23,22 +23,22 @@ export default function personReducer(state = [], action) {
     case ActionTypes.EDIT_PERSON:
       /*return state.map((person) =>
        person.id === action.person.id ?
-       Object.assign({}, person,
+       assign({}, person,
        {
        firstName: action.person.firstName,
        lastName: action.person.lastName
        }) : person
        );*/
 
-      return state.map((person) =>
-        person.id === action.person.id ?
+      return state.map((person) => {
+        return person.id === action.person.id ?
         {
           ...person,
           firstName: action.person.firstName,
           lastName: action.person.lastName
         } :
           person
-      );
+      });
     case ActionTypes.DELETE_PERSON:
       return state.filter((person) => person.id !== action.id);
     case ActionTypes.LIST_PERSON:

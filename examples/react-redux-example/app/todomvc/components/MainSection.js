@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component, PropTypes} from 'react';
 import TodoItem from './TodoItem';
 import Footer from './Footer';
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters';
+import {SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE} from '../constants/TodoFilters';
 
 const TODO_FILTERS = {
   [SHOW_ALL]: () => true,
@@ -28,7 +28,7 @@ class MainSection extends Component {
 
   renderToggleAll(completedCount) {
     // 此处的 props 是通过 react-redux 提供的 Provider ，利用 context 向子组件传递 props
-    const { todos, actions } = this.props;
+    const {todos, actions} = this.props;
     if (todos.length > 0) {
       return (
         <input className="toggle-all"
@@ -41,8 +41,8 @@ class MainSection extends Component {
   }
 
   renderFooter(completedCount) {
-    const { todos } = this.props;
-    const { filter } = this.state;
+    const {todos} = this.props;
+    const {filter} = this.state;
     const activeCount = todos.length - completedCount;
 
     if (todos.length) {
@@ -57,14 +57,13 @@ class MainSection extends Component {
   }
 
   render() {
-    const { todos, actions } = this.props;
-    const { filter } = this.state;
+    const {todos, actions} = this.props;
+    const {filter} = this.state;
 
     const filteredTodos = todos.filter(TODO_FILTERS[filter]);
-    const completedCount = todos.reduce((count, todo) =>
-        todo.completed ? count + 1 : count,
-      0
-    );
+    const completedCount = todos.reduce((count, todo) => {
+      return todo.completed ? count + 1 : count
+    }, 0);
 
     return (
       <section className="main">

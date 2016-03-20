@@ -1,5 +1,6 @@
 import { Schema, arrayOf, normalize } from 'normalizr';
 import { camelizeKeys } from 'humps';
+import assign from 'lodash/assign';
 import 'isomorphic-fetch';
 
 // Extracts the next page URL from Github API response.
@@ -35,7 +36,7 @@ function callApi(endpoint, schema) {
       const camelizedJson = camelizeKeys(json);
       const nextPageUrl = getNextPageUrl(response);
 
-      return Object.assign({},
+      return assign({},
         normalize(camelizedJson, schema),
         { nextPageUrl }
       );
@@ -102,7 +103,7 @@ export default store => next => action => {
   }
 
   function actionWith(data) {
-    const finalAction = Object.assign({}, action, data);
+    const finalAction = assign({}, action, data);
     delete finalAction[CALL_API];
     return finalAction;
   }

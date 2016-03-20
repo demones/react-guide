@@ -1,3 +1,4 @@
+import assign from 'lodash/assign';
 import * as ActionTypes from '../constants/ActionTypes';
 
 /**
@@ -12,11 +13,11 @@ import * as ActionTypes from '../constants/ActionTypes';
  */
 
 /*const initState = [{
-  id: 0,
-  firstName: '张',
-  lastName: '三',
-  completed: false
-}];*/
+ id: 0,
+ firstName: '张',
+ lastName: '三',
+ completed: false
+ }];*/
 
 /*eslint-disable indent*/
 export default function personsReducer(state = [], action) {
@@ -34,14 +35,14 @@ export default function personsReducer(state = [], action) {
         person.id !== action.id
       );
     case ActionTypes.EDIT_PERSON:
-      return state.map(person =>
-        person.id === action.person.id ?
-          Object.assign({}, person, {
+      return state.map(person => {
+        return person.id === action.person.id ?
+          assign({}, person, {
             firstName: action.person.firstName,
             lastName: action.person.lastName
           }) :
           person
-      );
+      });
     case ActionTypes.LIST_PERSON:
       return action.persons;
     case ActionTypes.CHANGE_STATUS:

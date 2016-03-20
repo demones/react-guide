@@ -26,7 +26,7 @@ function todo(state, action) {
       if (state.id !== action.id) {
         return state;
       }
-      //以下写法需要 babel-preset-stage-0 否则会报错，实现相当于 Object.assign({}, state || {}, {completed: true});
+      //以下写法需要 babel-preset-stage-0 否则会报错，实现相当于 assign({}, state || {}, {completed: true});
       return {
         ...state,
         completed: true

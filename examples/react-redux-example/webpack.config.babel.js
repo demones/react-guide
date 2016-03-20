@@ -57,6 +57,8 @@ let webpackConfig = {
     curdexample: [webpackDevServer, hotDevServer, './app/curd-example/index.js'],
     curd: [webpackDevServer, hotDevServer, './app/curd-demo/index.js'],
     curdfinal: [webpackDevServer, hotDevServer, './app/curd-demo-final/index.js'],
+    colorfulworld: [webpackDevServer, hotDevServer, './app/colorful-world/index.js'],
+
     //添加要打包在vendors里面的库，作为公共的js文件
     vendors: []
   },
@@ -159,6 +161,9 @@ const htmlwebpackPluginConfig = {
   },
   curd: {
     title: '一个简单的增删改查例子（演示）'
+  },
+  colorfulworld: {
+    title: '多彩的世界（开发环境）'
   }
 };
 

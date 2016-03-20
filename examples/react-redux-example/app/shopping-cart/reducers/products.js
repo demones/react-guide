@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux';
-import { RECEIVE_PRODUCTS, ADD_TO_CART } from '../constants/ActionTypes';
+import {combineReducers} from 'redux';
+import {RECEIVE_PRODUCTS, ADD_TO_CART} from '../constants/ActionTypes';
 
 /*eslint-disable indent*/
 function products(state, action) {
@@ -25,7 +25,8 @@ function byId(state = {}, action) {
         }, {})
       };
     default:
-      const { productId } = action;
+    {
+      const {productId} = action;
       if (productId) {
         return {
           ...state,
@@ -33,6 +34,7 @@ function byId(state = {}, action) {
         };
       }
       return state;
+    }
   }
 }
 

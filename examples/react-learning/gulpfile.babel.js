@@ -10,7 +10,7 @@ import config from './webpack.config.babel';
 import productionConfig from './webpack.production.config.babel';
 
 const $ = gulpLoadPlugins();
-const ip = 'localhost';
+const ip = 'm-duobao.com';
 const port = '9090';
 let webpackDevServer;
 

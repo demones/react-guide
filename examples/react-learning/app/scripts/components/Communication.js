@@ -5,6 +5,7 @@ import React, {Component, PropTypes} from 'react';
  * 首先父组件向子组件传递了一个 prop handleSelect 函数
  * 子组件值改变时，调用this.props.handleSelect，相当于间接调用父组件的函数
  */
+/*eslint-disable react/no-multi-comp*/
 class GenderSelect extends Component {
 
   render() {

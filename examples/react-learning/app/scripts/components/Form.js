@@ -5,6 +5,8 @@ import {findDOMNode} from 'react-dom';
 // 用法可以参考 http://www.oschina.net/news/66873/react-0-14 中说明
 import createFragment from 'react-addons-create-fragment';
 
+/*eslint-disable react/no-multi-comp*/
+
 // 不可控组件 1
 class UncontrollableForm1 extends Component {
   render() {

@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class GithubRepoList extends Component {
   renderLoadMore() {
@@ -29,10 +30,17 @@ export default class GithubRepoList extends Component {
     }
 
     return (
-      <div>
-        {items.map(renderItem)}
-        {pageCount > 0 && !isLastPage && this.renderLoadMore()}
-      </div>
+      <ReactCSSTransitionGroup
+        component="div"
+        transitionName="example"
+        transitionEnterTimeout={5000}
+        transitionLeaveTimeout={5000}
+      >
+        <div>
+          {items.map(renderItem)}
+          {pageCount > 0 && !isLastPage && this.renderLoadMore()}
+        </div>
+      </ReactCSSTransitionGroup>
     );
   }
 }

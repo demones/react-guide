@@ -1,21 +1,24 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+
 //import {createHashHistory} from 'history';
 
-import HopeFuture from 'components/HopeFuture';
-import Index from 'components/Index';
-import JsxAndJsTransformParent from 'components/JsxAndJsTransformParent';
-import HtmlEscaped from 'components/HtmlEscaped';
-import CustomAttribute from 'components/CustomAttribute';
-import SpreadAttributes from 'components/SpreadAttributes';
-import Different from 'components/Different';
-import ComponentLifecycleContainer from 'components/ComponentLifecycleContainer';
-import Piecemeal from 'components/Piecemeal';
-import Combination from 'components/Combination';
-import Communication from 'components/Communication';
-import Form from 'components/Form';
-import Animation from 'components/Animation';
+import HopeFuture from './components/HopeFuture';
+import Index from './components/Index';
+import JsxAndJsTransformParent from './components/JsxAndJsTransformParent';
+import HtmlEscaped from './components/HtmlEscaped';
+import CustomAttribute from './components/CustomAttribute';
+import SpreadAttributes from './components/SpreadAttributes';
+import Different from './components/Different';
+import ComponentLifecycleContainer from './components/ComponentLifecycleContainer';
+import Piecemeal from './components/Piecemeal';
+import Combination from './components/Combination';
+import Communication from './components/Communication';
+import Form from './components/Form';
+import Animation from './components/Animation';
+import PagelessScrollDemo from './components/reference/PagelessScrollDemo';
+import ComponentScrollloadDemo from './components/reference/ComponentScrollloadDemo';
 
 import 'styles/main.css';
 
@@ -39,6 +42,9 @@ render((
         <Route path="/communication" component={Communication}/>
         <Route path="/form" component={Form}/>
         <Route path="/animation" component={Animation}/>
+
+        <Route path="/react-pageless-scroll" component={PagelessScrollDemo}/>
+        <Route path="/react-component-scrollload" component={ComponentScrollloadDemo}/>
       </Route>
     </Router>
   </div>

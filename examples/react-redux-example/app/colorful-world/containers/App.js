@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {connect} from 'react-redux';
 
 import Explain from '../components/Explain';
@@ -11,7 +12,14 @@ class App extends Component {
       <div>
         <Explain/>
         <DemoNav/>
-        {children}
+        <ReactCSSTransitionGroup
+          component="div"
+          transitionName="example"
+          transitionEnterTimeout={5000}
+          transitionLeaveTimeout={5000}
+        >
+          {children}
+        </ReactCSSTransitionGroup>
       </div>
     );
   }

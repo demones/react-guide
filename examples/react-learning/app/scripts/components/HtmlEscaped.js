@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+/*eslint-disable react/jsx-key,react/no-danger*/
 class HtmlEscaped extends Component {
   render() {
     const copy = '&copy;';

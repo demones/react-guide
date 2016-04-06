@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 
+/*eslint-disable react/no-multi-comp*/
 class Jsx extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
   render() {
     const code = `
     <div>
@@ -33,10 +30,6 @@ class Jsx extends Component {
 }
 
 class Js extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
   render() {
     const code = `
     const title = React.createElement('h2', {key: 'title'}, 'js 对象写法');
@@ -59,10 +52,6 @@ class Js extends Component {
 }
 
 class JsBuildIn extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
   render() {
     const code = `
     const root = React.DOM.div(null,

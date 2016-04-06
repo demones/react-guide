@@ -19,6 +19,10 @@ class List extends Component {
           <li><Link to="/animation" target="_blank">react 动画</Link></li>
 
           <li><Link to="/piecemeal" target="_blank">零碎知识点</Link></li>
+
+          <li><Link to="/react-pageless-scroll" target="_blank">向下滑动组件1</Link></li>
+          <li><Link to="/react-component-scrollload" target="_blank">向下滑动组件2</Link></li>
+
         </ul>
       </div>
     );

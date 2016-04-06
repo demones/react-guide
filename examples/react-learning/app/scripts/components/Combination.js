@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 // 无状态组件，能用尽量使用无状态组件，提高性能
-/*eslint-disable react/prop-types*/
+/*eslint-disable react/prop-types,react/no-multi-comp*/
 const ProfilePic = (props) => {
   return (
     <img src={`http://graph.facebook.com/${props.username}/picture`}/>

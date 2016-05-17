@@ -5,7 +5,7 @@ import ExtractTextPlugin  from 'extract-text-webpack-plugin';
 
 const hotDevServer = 'webpack/hot/dev-server';
 // https://github.com/webpack/webpack-dev-server
-const webpackDevServer = 'webpack-dev-server/client?http://m-duobao.com:9090';
+const webpackDevServer = 'webpack-dev-server/client?http://localhost:9090';
 
 const appPath = path.resolve(__dirname, 'app');
 

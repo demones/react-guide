@@ -17,6 +17,7 @@ import Combination from './components/Combination';
 import Communication from './components/Communication';
 import Form from './components/Form';
 import Animation from './components/Animation';
+import Animation2 from './components/Animation2';
 import PagelessScrollDemo from './components/reference/PagelessScrollDemo';
 import ComponentScrollloadDemo from './components/reference/ComponentScrollloadDemo';
 
@@ -42,7 +43,8 @@ render((
         <Route path="/communication" component={Communication}/>
         <Route path="/form" component={Form}/>
         <Route path="/animation" component={Animation}/>
-
+        <Route path="/animation2" component={Animation2}/>
+        
         <Route path="/react-pageless-scroll" component={PagelessScrollDemo}/>
         <Route path="/react-component-scrollload" component={ComponentScrollloadDemo}/>
       </Route>
